@@ -35,4 +35,20 @@ class Customer extends Model
     public function company() {
         return $this->hasOne(Company::class);
     }
+
+    public function customerOrder() {
+        return $this->hasMany(CustomerOrder::class);
+    }
+
+    public function customerBillingAddress() {
+        return $this->hasMany(CustomerBillingAddress::class);
+    }
+
+    public function customerShippingAddress() {
+        return $this->hasMany(CustomerShippingAddress::class);
+    }
+
+    public function customerItem() {
+        return $this->hasMany(CustomerItem::class);
+    }
 }
