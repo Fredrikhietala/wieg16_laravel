@@ -14,7 +14,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+        return View('groups/index', ['groups' => $groups]);
     }
 
     /**
@@ -24,7 +25,7 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        //
+        return View('groups/create');
     }
 
     /**
@@ -35,7 +36,11 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $group = new Group();
+        $input = $request->all();
+        $group->fill($input)->save();
+
+        return redirect('/groups');
     }
 
     /**
@@ -46,7 +51,8 @@ class GroupsController extends Controller
      */
     public function show(Group $group)
     {
-        //
+
+        return View('groups/show')->with('group', $group);
     }
 
     /**
@@ -57,7 +63,7 @@ class GroupsController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return View('groups/edit')->with('group', $group);
     }
 
     /**
@@ -69,7 +75,10 @@ class GroupsController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $input = $request->all();
+        $group->fill($input)->save();
+
+        return redirect('/groups');
     }
 
     /**
@@ -80,6 +89,8 @@ class GroupsController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect('/groups');
     }
 }

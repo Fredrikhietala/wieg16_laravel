@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return View('index', ['products' => $products]);
+        return View('products/index', ['products' => $products]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return View('create');
+        return View('products/create');
     }
 
     /**
@@ -54,7 +54,7 @@ class ProductsController extends Controller
     public function show(Product $product)
     {
         //$products = Product::find($product['entity_id']);
-        return View('show')->with('product', $product);
+        return View('products/show')->with('product', $product);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return View('edit')->with('product', $product);
+        return View('products/edit')->with('product', $product);
     }
 
     /**
