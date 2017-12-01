@@ -4,6 +4,49 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\CustomerOrder
+ *
+ * @property-read \App\Customer $customer
+ * @property-read \App\CustomerBillingAddress $customerBillingAddress
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\CustomerItem[] $customerItems
+ * @property-read \App\CustomerShippingAddress $customerShippingAddress
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string|null $increment_id
+ * @property int|null $customer_id
+ * @property string|null $customer_email
+ * @property string|null $status
+ * @property string|null $marking
+ * @property float|null $grand_total
+ * @property float|null $subtotal
+ * @property float|null $tax_amount
+ * @property int|null $billing_address_id
+ * @property int|null $shipping_address_id
+ * @property string|null $shipping_method
+ * @property float|null $shipping_amount
+ * @property float|null $shipping_tax_amount
+ * @property string|null $shipping_description
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereCustomerEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereCustomerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereGrandTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereIncrementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereMarking($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereShippingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereShippingAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereShippingDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereShippingMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereShippingTaxAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereTaxAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereUpdatedAt($value)
+ */
 class CustomerOrder extends Model
 {
     public $incrementing = false;

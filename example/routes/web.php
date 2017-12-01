@@ -20,4 +20,6 @@ Route::get('/customers/by_company/{company_id}', 'CustomersController@showCustom
 Route::get('/customers/{id}', 'CustomersController@showSingleCustomer');
 Route::get('/customers/{id}/address', 'CustomersController@showAddress');
 
+Route::resource('products', 'ProductsController');
+
 
