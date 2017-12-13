@@ -87,4 +87,7 @@ class CustomerOrder extends Model
         return $this->hasMany(CustomerItem::class);
     }
 
+    public function invoice() {
+        return $this->belongsTo(Invoice::class);
+    }
 }

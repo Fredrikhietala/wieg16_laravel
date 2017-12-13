@@ -106,4 +106,8 @@ class Customer extends Model
     public function groupPrice() {
         return $this->hasMany(GroupPrice::class);
     }
+
+    public function invoice() {
+        return $this->hasMany(Invoice::class);
+    }
 }
