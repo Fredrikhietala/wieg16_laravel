@@ -27,5 +27,10 @@ Route::resource('products', 'ProductsController');
 Route::resource('groups', 'GroupsController');
 Route::resource('group-prices', 'GroupPricesController');
 
+Route::get('/stripe', 'StripeController@index');
+Route::get('/klarna', 'KlarnaController@index');
+Route::get('/klarna-confirmation', 'KlarnaController@confirmation');
+Route::get('/klarna-acknowledge', 'KlarnaController@acknowledge');
+
 
 
