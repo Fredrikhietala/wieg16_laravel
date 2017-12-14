@@ -16,8 +16,7 @@ class Invoice extends Model
         'shipping_tax_amount',
         'grand_total',
         'invoice_billed',
-        'serial_number',
-        'order_id'
+        'serial_number'
         ];
 
     public function customer() {
@@ -26,5 +25,11 @@ class Invoice extends Model
 
     public function orders() {
         return $this->hasMany(CustomerOrder::class);
+    }
+
+    public function recalculate() {
+        $this->load('orders');
+        $orders = $this->orders;
+
     }
 }

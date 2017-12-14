@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\CustomerOrder;
 use App\Invoice;
+use DB;
 use Illuminate\Console\Command;
 
 class ConnectInvoice extends Command
@@ -38,7 +40,13 @@ class ConnectInvoice extends Command
      */
     public function handle()
     {
-        $invoice = Invoice::find($id);
-        
+        $id = $this->argument('id');
+        Invoice::find($id);
+        $orderId = $this->argument('order_id');
+        CustomerOrder::find($orderId);
+
+        DB::table('customer_orders')->where('id', '=', $orderId)->update(['invoice_id' => $id]);
+        $this->info("Updating orders table with invoice_id: ".$id);
+
     }
 }

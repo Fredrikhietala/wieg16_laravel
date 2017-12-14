@@ -18,11 +18,11 @@ class CreateInvoicesTable extends Migration
             $table->date('invoice_date')->nullable();
             $table->date('due_date')->nullable();
             $table->unsignedBigInteger('customer_id')->index()->nullable();
-            $table->decimal('subtotal', 12, 4)->nullable();
-            $table->decimal('tax_amount', 12, 4)->nullable();
-            $table->decimal('shipping_amount', 12, 4)->nullable();
-            $table->decimal('shipping_tax_amount', 12, 4)->nullable();
-            $table->decimal('grand_total', 12, 4)->nullable();
+            $table->decimal('subtotal', 12, 4)->default(0);
+            $table->decimal('tax_amount', 12, 4)->default(0);
+            $table->decimal('shipping_amount', 12, 4)->default(0);
+            $table->decimal('shipping_tax_amount', 12, 4)->default(0);
+            $table->decimal('grand_total_incl_tax', 12, 4)->default(0);
             $table->boolean('invoice_billed')->nullable();
             $table->unsignedBigInteger('serial_number')->nullable();
             $table->unsignedBigInteger('order_id')->index()->nullable();
