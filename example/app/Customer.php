@@ -50,6 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereLastname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Invoice[] $invoice
  */
 class Customer extends Model
 {

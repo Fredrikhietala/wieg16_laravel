@@ -26,7 +26,7 @@ class AddInvoiceIdToCustomerOrdersTable extends Migration
     public function down()
     {
         Schema::table('customer_orders', function (Blueprint $table) {
-            //
+            $table->dropColumn('invoice_id');
         });
     }
 }

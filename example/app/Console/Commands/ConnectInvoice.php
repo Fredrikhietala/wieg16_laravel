@@ -45,8 +45,15 @@ class ConnectInvoice extends Command
         $orderId = $this->argument('order_id');
         CustomerOrder::find($orderId);
 
-        DB::table('customer_orders')->where('id', '=', $orderId)->update(['invoice_id' => $id]);
-        $this->info("Updating orders table with invoice_id: ".$id);
+
+        if (($id != null) && ($orderId != null)) {
+            DB::table('customer_orders')->where('id', '=', $orderId)->update(['invoice_id' => $id]);
+            $this->info("Updating orders table with invoice_id: ".$id);
+        } else {
+            $this->info("Id/OrderId not found");
+            die();
+        }
+
 
     }
 }

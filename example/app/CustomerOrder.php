@@ -46,6 +46,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereTaxAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereUpdatedAt($value)
+ * @property int|null $invoice_id
+ * @property-read \App\Invoice|null $invoice
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CustomerOrder whereInvoiceId($value)
  */
 class CustomerOrder extends Model
 {
