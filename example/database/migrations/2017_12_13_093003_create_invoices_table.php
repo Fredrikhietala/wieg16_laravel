@@ -24,8 +24,8 @@ class CreateInvoicesTable extends Migration
             $table->decimal('shipping_tax_amount', 12, 4)->default(0);
             $table->decimal('grand_total_incl_tax', 12, 4)->default(0);
             $table->boolean('invoice_billed')->default(0);
-            $table->unsignedInteger('serial_number')->unique()->nullable();
-            $table->unsignedInteger('serial_number_id')->unique()->nullable();
+            $table->string('serial_number')->unique()->nullable();
+            $table->unsignedInteger('serial_number_id')->nullable();
             $table->unsignedBigInteger('order_id')->index()->nullable();
             $table->timestamps();
         });

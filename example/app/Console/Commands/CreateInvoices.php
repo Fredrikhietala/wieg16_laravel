@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Invoice;
-use Faker\Provider\DateTime;
 use Illuminate\Console\Command;
 
 class CreateInvoices extends Command
@@ -43,8 +42,5 @@ class CreateInvoices extends Command
         $invoice->create();
         $this->info("New invoice created");
 
-        /*$date = date_create('2017-11-25');
-        $date->modify('+ 30 day');
-        echo $date->format('Y-m-d');*/
     }
 }

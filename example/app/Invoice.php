@@ -65,15 +65,30 @@ class Invoice extends Model
         return $this->hasMany(CustomerOrder::class);
     }
 
-    static public function recalculate() {
-        $invoiceId = Invoice::get();
+    public function recalculate() {
+        $invoiceId = $this->id;
         $orders = CustomerOrder::where('invoice_id', '=', $invoiceId)->get();
-        //$orders->load('orders');
-        //$orders = $this->orders;
-        $total = collect([$orders->subtotal, $orders->tax_amount, $orders->shipping_amount, $orders->shipping_tax_amount])->sum();
-        //$piped = $total->pipe(function ($total) {
-        return $total;
-        //});
+        $customerId = 0;
+        $subtotal = 0;
+        $tax_amount = 0;
+        $shipping_amount = 0;
+        $shipping_tax_amount = 0;
+        foreach ($orders as $order) {
+            $customerId = $order->customer_id;
+            $subtotal += $order->subtotal;
+            $tax_amount += $order->tax_amount;
+            $shipping_amount += $order->shipping_amount;
+            $shipping_tax_amount += $order->shipping_tax_amount;
+        }
+        $this->customer_id = $customerId;
+        $this->subtotal = $subtotal;
+        $this->tax_amount = $tax_amount;
+        $this->shipping_amount = $shipping_amount;
+        $this->shipping_tax_amount = $shipping_tax_amount;
+        $this->grand_total_incl_tax = $subtotal + $tax_amount + $shipping_amount + $shipping_tax_amount;
+
+        return $this;
+
 
     }
 
@@ -84,16 +99,23 @@ class Invoice extends Model
         return $due_date;
     }
 
-    static public function getSerialNumber() {
-        $serialNumberId = DB::table('invoices')->max('serial_number_id');
-        if ($serialNumberId == null) {
-            $serialNumberId = 1;
-        } elseif (isset($serialNumberId)) {
-            return $serialNumberId;
+    public function getSerialNumber() {
+        $year = $this->year;
+        $serialNumber = $this->serial_number;
+        if (isset($this->serial_number)) {
+            return $serialNumber;
+        } else {
+            $serialNumberId = Invoice::max('serial_number_id')->where('year', 'LIKE', (int)(date('y')));
+            if ($serialNumberId == null || Invoice::first($year = (date('y')))) {
+                $serialNumberId = 1;
+            }
+            else {
+                $serialNumberId += 1;
+            }
+            $this->serial_number = $serialNumberId + (int)(date('y').'0000');
+            $this->serial_number_id = $serialNumberId;
+            return $this;
         }
-        else {
-            $serialNumberId += 1;
-        }
-        return $serialNumberId;
+
     }
 }
