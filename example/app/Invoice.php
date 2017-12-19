@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Invoice whereTaxAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Invoice whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int|null $year
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Invoice whereYear($value)
  */
 class Invoice extends Model
 {
@@ -100,13 +102,12 @@ class Invoice extends Model
     }
 
     public function getSerialNumber() {
-        $year = $this->year;
         $serialNumber = $this->serial_number;
         if (isset($this->serial_number)) {
             return $serialNumber;
         } else {
-            $serialNumberId = Invoice::max('serial_number_id')->where('year', 'LIKE', (int)(date('y')));
-            if ($serialNumberId == null || Invoice::first($year = (date('y')))) {
+            $serialNumberId = Invoice::max('serial_number_id');
+            if ($serialNumberId == null) {
                 $serialNumberId = 1;
             }
             else {
