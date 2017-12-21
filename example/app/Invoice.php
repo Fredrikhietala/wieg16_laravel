@@ -102,12 +102,13 @@ class Invoice extends Model
     }
 
     public function getSerialNumber() {
+        $year = $this->year;
         $serialNumber = $this->serial_number;
         if (isset($this->serial_number)) {
             return $serialNumber;
         } else {
-            $serialNumberId = Invoice::max('serial_number_id');
-            if ($serialNumberId == null) {
+            $serialNumberId = Invoice::max('serial_number_id')->where('year', 'LIKE', (int)date('y'))->get();
+            if ($serialNumberId == null || Invoice::first($year = (int)(date('y')))) {
                 $serialNumberId = 1;
             }
             else {
